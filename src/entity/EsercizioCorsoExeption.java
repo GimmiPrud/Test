@@ -19,13 +19,12 @@ public class EsercizioCorsoExeption extends Exception {
         this.codice = codice;
     }
 
-    public String getCodice(Path p) throws IOException {
-        try(BufferedReader r = new BufferedReader(new FileReader(p.toFile()))){
-            String err = "";
-            switch (Exeption.valueOf(err)
-                case
-        }
-
-
-    }
+//    public String getCodice(Path p) throws IOException {
+//        try(BufferedReader r = new BufferedReader(new FileReader(p.toFile()))){
+//            String err = "";
+//            switch (Exeption.valueOf(err)
+//        }
+//
+//
+//    }
 }
