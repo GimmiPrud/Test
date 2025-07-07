@@ -1,5 +1,7 @@
 package service;
+import config.Exeption;
 import config.ParamPersona;
+import entity.EsercizioCorsoExeption;
 import entity.Persona;
 
 import java.io.BufferedReader;
@@ -159,15 +161,15 @@ public class Service implements IService {
                 String lS = b.readLine();
                 s = lS;
                 System.out.println("Stringa sostituita");
-            } catch (IOException e) {
+            } catch (Exception e) {
                 System.out.println("Errore");
-                e.printStackTrace();
+            } finally {
+                    System.out.println("Complete");
             }
         } else {
             System.out.println("Il file non esiste");
         }
         return s;
     }
-
 
 }
