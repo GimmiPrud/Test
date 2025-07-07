@@ -1,13 +1,8 @@
 package service;
-import config.Exeption;
 import config.ParamPersona;
-import entity.EsercizioCorsoExeption;
 import entity.Persona;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -40,7 +35,7 @@ public class Service implements IService {
                 String[] c = n.split(":");
 
                 String Key = c[0].trim().toUpperCase();
-                String val = c[1].trim();
+                String val = c[1].trim().trim();
 
                 switch (ParamPersona.valueOf(Key)){
                     case NOME:
@@ -57,7 +52,7 @@ public class Service implements IService {
                         break;
                 }
             }
-            p.add(new Persona(nome, cognome, eta, comune));
+                p.add(new Persona(nome, cognome, eta, comune));
             // old method:
 //            String nome = k[0];
 //            String cognome = k[1];
@@ -126,12 +121,20 @@ public class Service implements IService {
     public ArrayList<Persona> com(ArrayList<Persona> p, String s) {
         ArrayList<Persona> P = new ArrayList<>();
         String ss = s.toLowerCase().trim();
-        for(Persona i: p){
-            if(i.getCommune().toLowerCase().trim().contains(ss)){
-                P.add(i);
+        try {
+            for (Persona i : p) {
+                if (i.getCommune() != null && i.getCommune().toLowerCase().trim().contains(ss)) {
+                    p.add(i);
+                    System.out.println("Comune trovato");
+                    return P;
+                } else {
+                    System.out.println(" mi dispiace comune non trovato ");
+                }
             }
+        } catch (Exception e) {
+            throw new RuntimeException("Errore nella ricerca", e);
         }
-        return P;
+        return null;
     }
 
     /**
@@ -163,13 +166,26 @@ public class Service implements IService {
                 System.out.println("Stringa sostituita");
             } catch (Exception e) {
                 System.out.println("Errore");
-            } finally {
-                    System.out.println("Complete");
             }
         } else {
             System.out.println("Il file non esiste");
         }
         return s;
+    }
+
+    public String ReadProp(File f, String Key) throws IOException {
+        if(f.exists()){
+            try{
+                Properties prop = new Properties();
+                prop.load(new FileInputStream(f));
+                System.out.println("Lettura avvenuta con successo");
+                 return prop.getProperty(Key);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            return "Il file non esiste";
+        }
     }
 
 }
