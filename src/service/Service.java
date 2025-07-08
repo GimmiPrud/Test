@@ -32,33 +32,41 @@ public class Service implements IService {
             int eta = 0;
             String comune = " ";
             for(String n: k){
-                String[] c = n.split(":");
+                String[] c = n.split(":",2);
+                try{
+                    String Key = c[0].trim().toUpperCase();
+                    String val = c[1].trim().trim();
 
-                String Key = c[0].trim().toUpperCase();
-                String val = c[1].trim().trim();
-
-                switch (ParamPersona.valueOf(Key)){
-                    case NOME:
-                        nome = val;
-                        break;
-                    case COGNOME:
-                        cognome = val;
-                        break;
-                    case ETA:
-                        eta = Integer.parseInt(val);
-                        break;
-                    case COMUNE:
-                        comune = val;
-                        break;
+                    switch (ParamPersona.valueOf(Key)){
+                        case NOME:
+                            nome = val;
+                            break;
+                        case COGNOME:
+                            cognome = val;
+                            break;
+                        case ETA:
+                            eta = Integer.parseInt(val);
+                            break;
+                        case COMUNE:
+                            comune = val;
+                            break;
+                    }
+                    p.add(new Persona(nome, cognome, eta, comune));
+                    for(Persona v:p){
+                        if(v.getNome().isEmpty() || v.getNome().trim() ==""){
+                            v.setNome("null");
+                        } else if (v.getCognome().isEmpty() || v.getCognome().trim() ==""){
+                            v.setCognome("null");
+                        } else if (v.getCommune().isEmpty() || v.getCommune().trim() =="") {
+                            v.setCommune("null");
+                        } else if (v.getEta() == 0) {
+                            v.setEta(null);
+                        }
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new RuntimeException("Out of bound");
                 }
             }
-                p.add(new Persona(nome, cognome, eta, comune));
-            // old method:
-//            String nome = k[0];
-//            String cognome = k[1];
-//            int eta = Integer.parseInt(k[2]);
-//            String comune = k[3];
-//            p.add(new Persona(nome, cognome, eta, comune));
         }
         return p;
     }

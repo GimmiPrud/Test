@@ -3,10 +3,10 @@ package entity;
 public class Persona {
     private String nome;
     private String cognome;
-    private int eta;
+    private Integer eta;
     private String comune;
 
-    public Persona(String nome, String cognome, int eta, String commune) {
+    public Persona(String nome, String cognome, Integer eta, String commune) {
         this.nome = nome;
         this.cognome = cognome;
         this.eta = eta;
@@ -32,11 +32,11 @@ public class Persona {
         this.cognome = cognome;
     }
 
-    public int getEta() {
+    public Integer getEta() {
         return eta;
     }
 
-    public void setEta(int eta) {
+    public void setEta(Integer eta) {
         this.eta = eta;
     }
 

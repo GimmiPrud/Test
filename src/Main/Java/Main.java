@@ -32,11 +32,11 @@ public class Main {
 //-------------------------------------------------------\\
         String sAgg = "cognome:Ocrammaig, nome:Giammarco, eta:18, comune:Roma; nome:Alessandro, eta:19, cognome:Ordnassela, comune:Bari; nome:Marim, cognome:Miram, comune:Roma, eta:30; nome:Davide, cognome:Edivad, eta:23, comune:Torino";
         Service I = new Service();
-        String r = "cognome:Sara, nome:Aras, eta:35, comune:Milano; nome:Alessandra, eta:29, cognome:Ardnassela, comune:Napoli; nome:Flavia, cognome:Aivalf, comune:Roma, eta:16; nome:Ilaria, cognome:Airali, eta:23, comune:Torino; cognome:Ocrammaig, nome:Giammarco, eta:18, comune:Roma; nome:, eta:19, cognome:Ordnassela, comune:Bari; nome:Marim, cognome:Miram, comune:, eta:30; nome:Davide, conome:Edivad, eta:23, comune:Torino";
+        String r = "cognome:Sara, nome:Aras, eta:35, comune:Milano; nome:Alessandra, eta:29, cognome:Ardnassela, comune:Napoli; nome:Flavia, cognome:Aivalf, comune:Roma, eta:16; nome:Ilaria, cognome:Airali, eta:23, comune:Torino; cognome:Ocrammaig, nome:Giammarco, eta:18, comune:Roma; nome:, eta:19, cognome:Ordnassela, comune:Bari; nome:Marim, cognome:Miram, comune:, eta:30; nome:Davide, cognome:Edivad, eta:23, comune:Torino";
 
         File f = new File("src/config/file.properties");
         System.out.println(I.ReadProp(f, "ListaPersone"));
 
-//        System.out.println(I.creaLista(r));
+        System.out.println(I.creaLista(r));
     }
 }
